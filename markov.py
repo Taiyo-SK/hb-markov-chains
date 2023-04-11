@@ -74,17 +74,24 @@ def make_chains(text_string):
             # b. if not, initialize that list and add word to it
             # c. if key is in dict, append word to the list that already exists
     # chains[(word1, word2)] = []
-    # word1 = words[i]
-    # word2 = words[i + 1]
 
-    for i in range(len(words) - 3):
+    # for i in range(len(words) - 3):
 
-        links = chains.get((words[i], words[i + 1]), [])
-        print(links.append(words[i + 2]))
-        chains[(words[i], words[i + 1])] = links
+    #     links = chains.get((word1, word2), [])
+    #     links.append(word3)
+    #     chains[(word1, word2)] = links
+
+    for i in range(len(words) - 2):
+        word1 = words[i]
+        word2 = words[i + 1]
+        word3 = words[i + 2]
         
-        # if chains[(words[i], words[i + 1])] == []:
-        #     chains[(words[i], words[i + 1])].append(words[i + 2])
+        key = (word1, word2)
+        value = word3
+
+        if key not in list(chains.keys()):
+            chains[key] = []
+        chains[key].append(value)
         
     return chains
 
@@ -95,8 +102,33 @@ def make_text(chains):
     words = []
 
     # your code goes here
+    # link = key (tuple) + one random word from value (list)
+    # 1. choose a key randomly throght import choice from random module
+        # 1. making a list of chains's keys => [(), (), (), ()]
+    # 2. choose randomly same as step 1.
+    # 3. till the end point.(end point => the key which has one word)
+    # 4. join together as a string.
+    # while loop?
 
-    return ' '.join(words)
+    chains_key_list = list(chains.keys())
+    # all keys from our chains dictionary
+    start_key = choice(chains_key_list)
+    # a starting key
+    random_word = choice(chains[start_key])
+    # a random word from the starting key-value
+    new_key = start_key[1], random_word
+    # a new key of second word from start_key, random_word
+    # i = 0
+    # while i < 3:
+        
+    # new_key = first_key
+    # random_word = choice(chains[(new_key)])
+    # first_key = chains[(new_key, random_word)]
+    
+    
+    # return start_key, random_word, new_key
+
+    # return ' '.join(words)
 
 
 input_path = 'green-eggs.txt'
